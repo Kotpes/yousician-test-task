@@ -1,0 +1,23 @@
+.searchContainer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  width: 730px;
+  position: relative;
+  padding: 0 30px;
+  border-radius: 30px;
+  background-color: #ffff;
+}
+.searchInput {
+  height: 55px;
+  flex: 1;
+  border: none;
+  font-size: 18px;
+  font-family: 'Montserrat';
+  font-size: 14px;
+  font-weight: 300;
+}
+.searchIcon {
+  height: 18px;
+  width: 18px;
+}

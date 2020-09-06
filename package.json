@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "start-api": "json-server --watch data/db.json --port 3004 --delay 700"
   },
   "dependencies": {
+    "json-server": "^0.16.1",
     "next": "9.5.3",
     "react": "16.13.1",
     "react-dom": "16.13.1"
@@ -15,6 +17,13 @@
   "devDependencies": {
     "@types/node": "^14.6.4",
     "@types/react": "^16.9.49",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "eslint": "^7.8.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.0",
     "typescript": "^4.0.2"
   }
 }

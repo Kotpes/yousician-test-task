@@ -17,16 +17,14 @@ interface State {
   status: string;
   fetching: boolean;
   error?: Object;
-  data: {
-    songs: Song[];
-  };
+  songs: Song[];
 }
 
 const initialState = {
   status: 'idle',
   fetching: false,
   error: null,
-  data: [],
+  songs: [],
 };
 
 const useFetchReducer = (
@@ -40,7 +38,7 @@ const useFetchReducer = (
       return {
         ...initialState,
         status: 'fetched',
-        data: action.payload,
+        songs: action.payload,
         fetching: false,
       };
     case 'FETCH_ERROR':
@@ -67,19 +65,19 @@ export const useFetch = (url: string, options: Options = defaultOptions) => {
     let cancelRequest = false;
     if (!url) return;
 
-    const fetchData = async () => {
+    const fetchSongs = async () => {
       dispatch({ type: 'FETCHING' });
       if (cache.current[url]) {
-        const data = cache.current[url];
-        dispatch({ type: 'FETCHED', payload: data });
+        const songs = cache.current[url];
+        dispatch({ type: 'FETCHED', payload: songs });
       } else {
         try {
           const response = await fetch(url, options);
-          const data = await response.json();
+          const songs = await response.json();
           if (options.method === 'GET') {
-            cache.current[url] = data;
+            cache.current[url] = songs;
             if (cancelRequest) return;
-            dispatch({ type: 'FETCHED', payload: data });
+            dispatch({ type: 'FETCHED', payload: songs });
           }
         } catch (error) {
           if (cancelRequest) return;
@@ -88,7 +86,7 @@ export const useFetch = (url: string, options: Options = defaultOptions) => {
       }
     };
 
-    fetchData();
+    fetchSongs();
 
     return function cleanup() {
       cancelRequest = true;

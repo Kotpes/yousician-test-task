@@ -8,22 +8,29 @@ import { Song } from '../hooks/useFetch';
 import styles from '../styles/Home.module.css';
 
 const API_SONGS_ENDPOINT = 'http://localhost:3004';
+interface Favorite {
+  id: string;
+  songId: string;
+}
 interface Props {
   songs: Song[];
+  favorites: Array<Favorite>;
   totalSongsCount: string;
 }
 
-const Home = ({ songs, totalSongsCount }: Props) => {
+const Home = ({ songs, favorites, totalSongsCount }: Props) => {
   const [searchValue, setSearchValue] = useState('');
   const [foundSongs, setFoundSongs] = useState(songs);
 
-  const { data } = useFetch(
+  const { songs: fetchedSongs } = useFetch(
     `${API_SONGS_ENDPOINT}/songs?_start=0&_limit=20&search_like=${searchValue}`
   );
 
+  console.log('data', fetchedSongs);
+
   useEffect(() => {
-    setFoundSongs(data);
-  }, [data]);
+    setFoundSongs(fetchedSongs);
+  }, [fetchedSongs]);
 
   const updateSearchValue = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -70,13 +77,17 @@ const Home = ({ songs, totalSongsCount }: Props) => {
 
 export async function getStaticProps() {
   const initialSongsFilter = `${API_SONGS_ENDPOINT}/songs?_start=0&_limit=20`;
-  const response = await fetch(initialSongsFilter);
-  const data = await response.json();
-  const totalSongsCount = response.headers.get('X-Total-Count');
+  const songsResponse = await fetch(initialSongsFilter);
+  const favoritesResponse = await fetch(`${API_SONGS_ENDPOINT}/favorites`);
+
+  const responses = await Promise.all([songsResponse, favoritesResponse]);
+  const [songs, favorites] = await Promise.all(responses.map((r) => r.json()));
+  const totalSongsCount = songsResponse.headers.get('X-Total-Count');
 
   return {
     props: {
-      songs: data,
+      songs,
+      favorites,
       totalSongsCount,
     },
   };

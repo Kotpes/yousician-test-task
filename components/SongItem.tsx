@@ -7,18 +7,19 @@ interface Props extends Song {
     index: number
 }
 
+
+
 const SongItem = (props: Props) => {
     const {images, title, artist, index} = props
-    console.log(index)
     const isEven = index % 2 == 0
     const containerBackgroundStyle = isEven ? styles.even : ''
 
     return (
         <section className={`${styles.container} ${containerBackgroundStyle}`}>
             <img src={images} alt={title} className={styles.coverArt}/>
-            <div>
-                <h3>{title}</h3>
-                <h4>{artist}</h4>
+            <div className={styles.songInfo}>
+                <h3 className={styles.title}>{title}</h3>
+                <h4 className={styles.artist}>{artist}</h4>
             </div>            
         </section>
     )

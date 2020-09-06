@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  align-items: center;
   height: 90px;
   padding: 10px;
 }
@@ -9,6 +10,27 @@
 }
 
 .coverArt {
-  height: auto;
-  width: 80px;
+  height: 70px;
+  width: 90px;
+  object-fit: contain;
+}
+
+.songInfo {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+}
+
+.title,
+.artist {
+  font-size: 16px;
+  margin: 0;
+}
+
+.title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.artist {
+  font-weight: 300;
 }

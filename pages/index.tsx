@@ -20,10 +20,11 @@ interface Props {
 
 const Home = ({ songs, favorites, totalSongsCount }: Props) => {
   const [searchValue, setSearchValue] = useState('');
+  const [nextStart, setNextStart] = useState(0);
   const [foundSongs, setFoundSongs] = useState(songs);
 
   const { songs: fetchedSongs } = useFetch(
-    `${API_SONGS_ENDPOINT}/songs?_start=0&_limit=20&search_like=${searchValue}`
+    `${API_SONGS_ENDPOINT}/songs?_start=${nextStart}&_limit=20&search_like=${searchValue}`
   );
 
   console.log('data', fetchedSongs);
@@ -67,7 +68,15 @@ const Home = ({ songs, favorites, totalSongsCount }: Props) => {
           {foundSongs &&
             foundSongs.length > 0 &&
             foundSongs.map((item, index) => {
-              return <SongItem key={item.id} {...item} index={index} />;
+              const isLiked = favorites.some((fav) => fav.songId === item.id);
+              return (
+                <SongItem
+                  key={item.id}
+                  {...item}
+                  isLiked={isLiked}
+                  index={index}
+                />
+              );
             })}
         </section>
       </main>

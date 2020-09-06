@@ -1,9 +1,19 @@
+:root {
+  --text-color: #ffffff;
+  --background-color: #000000;
+  --placeholder-color: #939393;
+}
 html,
 body {
+  background-color: var(--background-color);
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+body {
+  letter-spacing: 0.5px;
 }
 
 a {
@@ -13,4 +23,24 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+h1,
+h2,
+span,
+p {
+  color: var(--text-color);
+}
+
+input::-webkit-input-placeholder {
+  color: var(--placeholder-color);
+}
+input::-moz-placeholder {
+  color: var(--placeholder-color);
+}
+input:-ms-input-placeholder {
+  color: var(--placeholder-color);
+}
+input:-moz-placeholder {
+  color: var(--placeholder-color);
 }

@@ -35,3 +35,12 @@
 .artist {
   font-weight: 300;
 }
+
+.songLevelAndAction {
+  display: flex;
+  align-items: center;
+}
+
+.songLevel {
+  padding-right: 35px;
+}

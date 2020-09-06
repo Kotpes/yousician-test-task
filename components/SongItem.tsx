@@ -10,12 +10,16 @@ interface Props extends Song {
 }
 
 const SongItem = (props: Props) => {
-    const {images, title, artist, level, isLiked = false, index} = props
+    const {images, title, artist, level, isLiked, id, index} = props
     const containerBackgroundStyle = index % 2 == 0 ? styles.even : ''
 
     //adds fallback image for those images that return 403
     const handleFallbackImage = (event: any) => {
         event.target.src = '/missing-cover.png'
+    }
+
+    const onClick = () => {
+        console.log('Song to add to favourits', id)
     }
 
     return (
@@ -26,8 +30,11 @@ const SongItem = (props: Props) => {
                 <h4 className={styles.artist}>{artist}</h4>
             </div>
             <div className={styles.songLevelAndAction}>
-                {level}
-                <HeartIcon fill={isLiked ? '#dc001d' : 'none'} stroke={isLiked ? 'none' : '#fff'} />
+                <span className={styles.songLevel}>{level}</span>
+                <span onClick={onClick} onKeyPress={onClick} role='button' tabIndex={0} >
+                    <HeartIcon fill={isLiked ? '#dc001d' : 'none'} stroke={isLiked ? 'none' : '#fff'} />
+                </span>
+                
             </div>
         </section>
     )

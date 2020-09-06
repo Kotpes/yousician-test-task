@@ -74,11 +74,9 @@ export const useFetch = (url: string, options: Options = defaultOptions) => {
         try {
           const response = await fetch(url, options);
           const songs = await response.json();
-          if (options.method === 'GET') {
-            cache.current[url] = songs;
-            if (cancelRequest) return;
-            dispatch({ type: 'FETCHED', payload: songs });
-          }
+          cache.current[url] = songs;
+          if (cancelRequest) return;
+          dispatch({ type: 'FETCHED', payload: songs });
         } catch (error) {
           if (cancelRequest) return;
           dispatch({ type: 'FETCH_ERROR', payload: error.message });

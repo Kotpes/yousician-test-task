@@ -1,5 +1,5 @@
 // Based on https://www.smashingmagazine.com/2020/07/custom-react-hook-fetch-cache-data/
-import { useEffect, useRef, useReducer } from 'react';
+import { useEffect, useRef, useReducer, useCallback } from 'react';
 
 interface Options {
   method: string;
@@ -13,21 +13,25 @@ export interface Song {
   level: number;
   search: string;
 }
+export interface Favorite {
+  id: string;
+  songId: string;
+}
 interface State {
   status: string;
   fetching: boolean;
   error?: Object;
-  songs: Song[];
+  data?: Song[] | Favorite[];
 }
 
 const initialState = {
   status: 'idle',
   fetching: false,
   error: null,
-  songs: [],
+  data: [],
 };
 
-const useFetchReducer = (
+const reducer = (
   state: State,
   action: { type: string; payload?: State }
 ) => {
@@ -38,7 +42,7 @@ const useFetchReducer = (
       return {
         ...initialState,
         status: 'fetched',
-        songs: action.payload,
+        data: action.payload,
         fetching: false,
       };
     case 'FETCH_ERROR':
@@ -59,37 +63,30 @@ const defaultOptions = {
 
 export const useFetch = (url: string, options: Options = defaultOptions) => {
   const cache = useRef({});
-  const [state, dispatch] = useReducer(useFetchReducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => {
-    let cancelRequest = false;
-    if (!url) return;
 
-    const fetchSongs = async () => {
+  const fetchData = useCallback(
+    async () => {
       dispatch({ type: 'FETCHING' });
       if (cache.current[url]) {
-        const songs = cache.current[url];
-        dispatch({ type: 'FETCHED', payload: songs });
+        const data = cache.current[url];
+        dispatch({ type: 'FETCHED', payload: data });
       } else {
         try {
           const response = await fetch(url, options);
-          const songs = await response.json();
-          cache.current[url] = songs;
-          if (cancelRequest) return;
-          dispatch({ type: 'FETCHED', payload: songs });
+          const data = await response.json();
+          cache.current[url] = data;
+          dispatch({ type: 'FETCHED', payload: data });
         } catch (error) {
-          if (cancelRequest) return;
           dispatch({ type: 'FETCH_ERROR', payload: error.message });
         }
       }
-    };
+    }, [url, options]);
 
-    fetchSongs();
+  useEffect(() => {
+    fetchData();
+  }, [url, options, fetchData]);
 
-    return function cleanup() {
-      cancelRequest = true;
-    };
-  }, [url, options]);
-
-  return state;
+  return { state, fetchData };
 };

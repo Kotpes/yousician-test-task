@@ -13,8 +13,12 @@ interface Props {
 const Filter = ({ onRangeSelect }: Props) => {
     const [selectedRange, setSelectedRange] = useState([])
     const [filtersVisible, setFiltersVisibility] = useState(false)
+    const [selectedValuesLabel, setSelectedValuesLabel] = useState('')
     const values = useRef(initialValues)
     const labelText = filtersVisible ? 'Hide filter' : 'Filter by level'
+    const selectedFiltersClass = selectedValuesLabel ? styles.filtersSelected : ''
+    const filterIconFill = filtersVisible ? '#fff' : '#000'
+    const filterIconBackground = filtersVisible ? '' : styles.active
 
     const toggleFilters = () => {
         setFiltersVisibility(!filtersVisible)
@@ -24,8 +28,11 @@ const Filter = ({ onRangeSelect }: Props) => {
         const { firstValue, secondValue } = values.current
         const edges = firstValue > secondValue ? { start: secondValue, end: firstValue } : { start: firstValue, end: secondValue }
         const selectedRange = range(edges.start, edges.end + 1)
+        const selectedValueLabel = `${selectedRange[0]} - ${selectedRange[selectedRange.length - 1]}`
+
         setSelectedRange(selectedRange)
         onRangeSelect(selectedRange)
+        setSelectedValuesLabel(selectedValueLabel)
     }
 
     const handleFilterSelection = (value: number) => {
@@ -49,8 +56,11 @@ const Filter = ({ onRangeSelect }: Props) => {
     return (
         <section className={styles.filterContainer}>
             <span className={styles.filterLabel}>{labelText}</span>
-            <div className={styles.selectedFilters}>
-                <FilterIcon fill="#fff" onClick={toggleFilters} />
+            <div className={`${styles.selectedFilters} ${selectedFiltersClass}`}>
+                {selectedValuesLabel &&
+                    <span className={styles.selectedValues}>{selectedValuesLabel}</span>
+                }
+                <FilterIcon fill={filterIconFill} onClick={toggleFilters} className={`${styles.filterButton} ${filterIconBackground}`} />
             </div>
             {filtersVisible &&
                 <section className={styles.filters}>

@@ -4,7 +4,7 @@
   align-items: center;
   flex-wrap: wrap;
   grid-column: 2 / span 1;
-  padding: 10px;
+  padding: 10px 15px;
 }
 .filterLabel {
   text-transform: uppercase;
@@ -14,11 +14,10 @@
 }
 .selectedFilters {
   height: 40px;
-  width: 40px;
+  min-width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #ffff;
   border-radius: 20px;
   color: #fff;
 }
@@ -46,4 +45,28 @@
 .filter.selected {
   background-color: #fff;
   color: var(--background-color);
+}
+
+.selectedValues {
+  font-weight: 600;
+  display: block;
+  padding-left: 15px;
+  padding-right: 10px;
+}
+
+.selectedFilters.filtersSelected {
+  border: 2px solid #ffff;
+}
+
+.filterButton {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 2px solid #ffff;
+}
+.filterButton.active {
+  background-color: #fff;
 }

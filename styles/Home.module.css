@@ -33,27 +33,6 @@
   grid-template-columns: 1fr 1024px 1fr;
 }
 
-.filterContainer {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  grid-column: 2 / span 1;
-  padding: 10px;
-}
-.filterLabel {
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 600;
-  padding-right: 20px;
-}
-.selectedFilters {
-  height: 40px;
-  width: 100px;
-  border: 2px solid #ffff;
-  border-radius: 20px;
-  color: #fff;
-}
-
 .main {
   padding: 5rem 0;
   flex: 1;

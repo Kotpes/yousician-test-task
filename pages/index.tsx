@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useFetch } from '../hooks/useFetch';
 import Search from '../components/Search';
 import SongItem from '../components/SongItem';
+import Filter from '../components/Filter'
 
 import { Song, Favorite } from '../hooks/useFetch';
 import styles from '../styles/Home.module.css';
@@ -21,11 +22,19 @@ const Home = ({ initialSongs, initialFavorites, totalSongsCount }: Props) => {
   const [foundSongs, setFoundSongs] = useState(initialSongs);
   const [favorites, setFavorites] = useState(initialFavorites)
   const [timestamp, setTimestamp] = useState(new Date())
+  const [selectedRange, setSelectedRange] = useState([])
 
-  console.log('favorites', favorites)
+  const levelRanges = selectedRange.length > 0 && selectedRange.reduce((acc, cur, index) => {
+    if (index === 0) {
+      return `&level=${acc}`
+    }
+    return `${acc}&level=${cur}`
+  }, selectedRange[0])
+
+  const levelFilter = levelRanges ? levelRanges : ''
 
   const { state: { data: fetchedSongs }, } = useFetch(
-    `${API_SONGS_ENDPOINT}/songs?_start=${nextStart}&_limit=20&search_like=${searchValue}`
+    `${API_SONGS_ENDPOINT}/songs?_start=${nextStart}&_limit=20&search_like=${searchValue}${levelFilter}`
   );
   const { state: { data: fetchedFavorites } } = useFetch(`${API_SONGS_ENDPOINT}/favorites?${timestamp}`)
 
@@ -46,6 +55,10 @@ const Home = ({ initialSongs, initialFavorites, totalSongsCount }: Props) => {
     event.preventDefault();
     setSearchValue(event.target.value);
   };
+
+  const onRangeSelect = (range: number[]) => {
+    setSelectedRange(range)
+  }
 
   const searchProps = { searchValue, updateSearchValue };
 
@@ -69,10 +82,7 @@ const Home = ({ initialSongs, initialFavorites, totalSongsCount }: Props) => {
       </header>
 
       <main className={styles.gridContainer}>
-        <section className={styles.filterContainer}>
-          <span className={styles.filterLabel}>Filter by level</span>
-          <div className={styles.selectedFilters}>5-10</div>
-        </section>
+        <Filter onRangeSelect={onRangeSelect} />
         <section className={styles.searchResults}>
           {foundSongs.length > 0 &&
             foundSongs.map((item, index) => {

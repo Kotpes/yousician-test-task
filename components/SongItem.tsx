@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Song, Favorite } from '../hooks/useFetch';
-import HeartIcon from './HeartIcon';
+import HeartIcon from './icons/HeartIcon';
 import { API_SONGS_ENDPOINT } from '../pages/index';
 
 import styles from './SongItem.module.css';
@@ -9,13 +9,24 @@ interface Props extends Song {
     index: number;
     isLiked: boolean;
     reFetchFavourites: Function;
-    favorite?: Favorite,
+    favorite: Favorite
 }
 
-const handleFavourite = async (body: string, method: string) => {
+const removeFromFavorites = async (favoriteId: string) => {
+    try {
+        const response = await fetch(`${API_SONGS_ENDPOINT}/favorites/${favoriteId}`, {
+            method: 'DELETE',
+        });
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const addFavorite = async (body: string) => {
     try {
         const response = await fetch(`${API_SONGS_ENDPOINT}/favorites`, {
-            method,
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -35,13 +46,12 @@ const SongItem = (props: Props) => {
         artist,
         level,
         isLiked,
-        id,
+        id: songId,
         reFetchFavourites,
         favorite,
         index,
     } = props;
     const [liked, setLiked] = useState(isLiked)
-    console.log('favorite', favorite)
 
     const containerBackgroundStyle = index % 2 == 0 ? styles.even : '';
     const fill = liked ? '#dc001d' : 'none';
@@ -54,13 +64,12 @@ const SongItem = (props: Props) => {
 
     const onClick = async () => {
         setLiked(!liked)
-        const payload = liked ? favorite.id : id
-        const body = JSON.stringify({ payload })
-        const method = liked ? 'DELETE' : 'POST'
-        await handleFavourite(body, method);
+        const handleFavorite = liked ? removeFromFavorites(favorite.id) : addFavorite(JSON.stringify({ songId }))
+        await handleFavorite;
         reFetchFavourites();
     };
 
+    // using local state here, so that heart icon appearance is changed immidiately after onClick()
     useEffect(() => {
         setLiked(isLiked)
     }, [isLiked])

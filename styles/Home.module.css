@@ -15,17 +15,30 @@
   background-size: cover;
 }
 
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .header {
+    background-image: url('/yousician-hero@2x.png');
+  }
+}
+
 .title {
   margin: 0;
   font-weight: 800;
   font-size: 42px;
   text-transform: uppercase;
+  text-align: center;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
 .subtitle {
   font-weight: 300;
   font-size: 18px;
+  text-align: center;
 }
 
 .gridContainer {
@@ -45,4 +58,36 @@
 .searchResults {
   grid-column: 2 / span 1;
   color: #fff;
+}
+
+@media (max-width: 1100px) {
+  .gridContainer {
+    grid-template-columns: 1fr 768px 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .gridContainer {
+    grid-template-columns: 20px 1fr 20px;
+  }
+  .header {
+    background-image: url('/yousician-hero-mobile.png');
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 600px),
+  only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 600px),
+  only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 600px),
+  only screen and (min-device-pixel-ratio: 2) and (max-width: 600px),
+  only screen and (min-resolution: 192dpi) and (max-width: 600px),
+  only screen and (min-resolution: 2dppx) and (max-width: 600px) {
+  .header {
+    background-image: url('/yousician-hero-mobile@2x.png');
+  }
+}
+
+@media (max-width: 420px) {
+  .title {
+    font-size: 38px;
+  }
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import Head from 'next/head';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import difference from 'lodash.difference'
 import { useFetch } from '../hooks/useFetch';
 import Search from '../components/Search';
 import SongItem from '../components/SongItem';

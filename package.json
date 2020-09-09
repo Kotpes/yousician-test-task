@@ -11,7 +11,6 @@
   "dependencies": {
     "@types/lodash.range": "^3.2.6",
     "json-server": "^0.16.1",
-    "lodash.difference": "^4.5.0",
     "lodash.inrange": "^3.3.6",
     "lodash.range": "^3.2.0",
     "next": "9.5.3",

@@ -21,3 +21,9 @@
   height: 18px;
   width: 18px;
 }
+
+@media (max-width: 860px) {
+  .searchContainer {
+    width: 100%;
+  }
+}

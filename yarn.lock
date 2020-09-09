@@ -4491,11 +4491,6 @@ lodash-id@^0.14.0:
   resolved "https://registry.yarnpkg.com/lodash-id/-/lodash-id-0.14.0.tgz#baf48934e543a1b5d6346f8c84698b1a8c803896"
   integrity sha1-uvSJNOVDobXWNG+MhGmLGoyAOJY=
 
-lodash.difference@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.difference/-/lodash.difference-4.5.0.tgz#9ccb4e505d486b91651345772885a2df27fd017c"
-  integrity sha1-nMtOUF1Ia5FlE0V3KIWi3yf9AXw=
-
 lodash.inrange@^3.3.6:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/lodash.inrange/-/lodash.inrange-3.3.6.tgz#dfdfe915f6e30e8056293707e2395dab88ea128d"

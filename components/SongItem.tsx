@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Song, Favorite } from '../hooks/useFetch';
 import HeartIcon from './icons/HeartIcon';
+import LevelIcon from '../components/icons/LevelIcon'
 import { API_SONGS_ENDPOINT } from '../pages/index';
 
 import styles from './SongItem.module.css';
@@ -87,7 +88,9 @@ const SongItem = (props: Props) => {
                 <h4 className={styles.artist}>{artist}</h4>
             </div>
             <div className={styles.songLevelAndAction}>
-                <span className={styles.songLevel}>{level}</span>
+                <span className={styles.songLevel}>
+                    <LevelIcon value={level} />
+                </span>
                 <span onClick={onClick} onKeyPress={onClick} role='button' tabIndex={0}>
                     <HeartIcon fill={fill} stroke={stroke} />
                 </span>

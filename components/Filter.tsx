@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import range from 'lodash.range'
 
 import FilterIcon from './icons/FilterIcon'
+import LevelIcon from './icons/LevelIcon'
 import styles from './Filter.module.css'
 
 const initialValues = { firstValue: 0, secondValue: 0 }
@@ -67,17 +68,16 @@ const Filter = ({ onRangeSelect }: Props) => {
                     {Array.from({ length: 15 }, (v, k) => {
                         const value = k + 1;
                         const isInRange = selectedRange.includes(value)
-                        const backgroundStyle = isInRange ? styles.selected : ''
                         return (
                             <span
-                                className={`${styles.filter} ${backgroundStyle}`}
+                                className={styles.filter}
                                 onClick={() => handleFilterSelection(value)}
                                 onKeyPress={() => handleFilterSelection(value)}
                                 role="button"
                                 tabIndex={0}
                                 key={k}
                             >
-                                {value}
+                                <LevelIcon value={value} isSelected={isInRange} />
                             </span>
                         )
                     })}

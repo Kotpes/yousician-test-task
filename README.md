@@ -1,30 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Intro
+
+Have been wanting to try [Next.js](https://nextjs.org/) and this test task felt like a perfect opportunity do take it into use. The befenits are server-side rendered html page with initial data from the server. The app can also be deployed to [Vercel](https://vercel.com) and served to a user from a closest server of their edge network.
+
+The project has been bootstrapped with [create-next-app](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
+```
+
+Then, the api server:
+
+```bash
+yarn start-api
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## What's working
 
-## Learn More
+- songs are fetched from API
+- search is working
+- filters are working
+- site is responsive
+- songs can be added/removed from favorites
+- infinite scroll
 
-To learn more about Next.js, take a look at the following resources:
+## What's not working (mostly due to limited time)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- no loading spinner (just ...Loading text)
+- infinite scroll's not working when something's searched or filters selected
+- test coverage could be better

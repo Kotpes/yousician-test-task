@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, FunctionComponent } from 'react'
 import range from 'lodash.range'
 
 import FilterIcon from './icons/FilterIcon'
@@ -7,11 +7,10 @@ import styles from './Filter.module.css'
 
 const initialValues = { firstValue: 0, secondValue: 0 }
 interface Props {
-    // eslint-disable-next-line no-unused-vars
     onRangeSelect: (selectedRange: number[]) => void;
 }
 
-const Filter = ({ onRangeSelect }: Props) => {
+const Filter: FunctionComponent<Props> = ({ onRangeSelect }: Props) => {
     const [selectedRange, setSelectedRange] = useState([])
     const [filtersVisible, setFiltersVisibility] = useState(false)
     const [selectedValuesLabel, setSelectedValuesLabel] = useState('')
@@ -56,7 +55,7 @@ const Filter = ({ onRangeSelect }: Props) => {
 
     return (
         <section className={styles.filterContainer}>
-            <span className={styles.filterLabel}>{labelText}</span>
+            <span className={styles.filterLabel} id='label'>{labelText}</span>
             <div className={`${styles.selectedFilters} ${selectedFiltersClass}`}>
                 {selectedValuesLabel &&
                     <span className={styles.selectedValues}>{selectedValuesLabel}</span>

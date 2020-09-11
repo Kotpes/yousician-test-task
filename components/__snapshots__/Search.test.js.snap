@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search it matches snapshots 1`] = `
+<section
+  className="searchContainer"
+>
+  <input
+    className="searchInput"
+    id="songsSearch"
+    name="songs-search"
+    onChange={[MockFunction]}
+    placeholder="Search for songs by artist or title"
+    type="text"
+    value="Jackson 5"
+  />
+  <img
+    alt="search icon"
+    className="searchIcon"
+    src="/icons/search.svg"
+  />
+</section>
+`;

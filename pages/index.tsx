@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, FunctionComponent } from 'react';
 import Head from 'next/head';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useFetch } from '../hooks/useFetch';
@@ -17,7 +17,7 @@ interface Props {
   totalSongsCount: number;
 }
 
-const Home = ({ initialSongs, initialFavorites, totalSongsCount }: Props) => {
+const Home: FunctionComponent<Props> = ({ initialSongs, initialFavorites, totalSongsCount }: Props) => {
   const [searchValue, setSearchValue] = useState('');
   const [nextPage, setNextPage] = useState(0);
   const [foundSongs, setFoundSongs] = useState(initialSongs);

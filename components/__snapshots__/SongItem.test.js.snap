@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SongItem matches the snapshot 1`] = `
+<section
+  className="container "
+>
+  <img
+    alt="Song title"
+    className="coverArt"
+    onError={[Function]}
+    src="images_url"
+  />
+  <div
+    className="songInfo"
+  >
+    <h3
+      className="title"
+    >
+      Song title
+    </h3>
+    <h4
+      className="artist"
+    >
+      Artist name
+    </h4>
+  </div>
+  <div
+    className="songLevelAndAction"
+  >
+    <span
+      className="songLevel"
+    >
+      <svg
+        height={45}
+        viewBox="0 0 42 42"
+        width={45}
+      >
+        <circle
+          className="ring"
+          cx={21}
+          cy={21}
+          fill="transparent"
+          r={15}
+          stroke="#383635"
+          strokeDasharray={0}
+          strokeWidth={1.8}
+        />
+        <circle
+          className="progress"
+          cx={21}
+          cy={21}
+          fill="transparent"
+          r={15}
+          stroke="#ff8e00"
+          strokeDasharray={94.24777960769379}
+          strokeDashoffset={31.41592653589792}
+          strokeWidth={1.8}
+          transform="rotate(-90 21 21)"
+        />
+        <circle
+          className="devider"
+          cx={21}
+          cy={21}
+          fill="transparent"
+          r={15}
+          stroke="#000"
+          strokeDasharray="9% 65.5%"
+          strokeWidth={2}
+          transform="rotate(-96 21 21)"
+        />
+        <text
+          dy=".3em"
+          fill="#fff"
+          fontSize="14"
+          fontWeight="800"
+          textAnchor="middle"
+          x="50%"
+          y="50%"
+        >
+          10
+        </text>
+      </svg>
+    </span>
+    <span
+      onClick={[Function]}
+      onKeyPress={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <svg
+        height={24}
+        style={
+          Object {
+            "cursor": "default",
+          }
+        }
+        viewBox="0 0 24 24"
+        width={24}
+      >
+        <path
+          d="M0 0h24v24H0z"
+          fill="none"
+        />
+        <path
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+          fill="none"
+          stroke="#fff"
+        />
+      </svg>
+    </span>
+  </div>
+</section>
+`;

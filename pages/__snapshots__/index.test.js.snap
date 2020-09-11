@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home it matches snapshots 1`] = `
+<div
+  className="container"
+>
+  <header
+    className="header"
+  >
+    <h1
+      className="title"
+    >
+      New songs delivered every week
+    </h1>
+    <h2
+      className="subtitle"
+    >
+      Here are the most recent additions to the Yousician App. Start playing today!
+    </h2>
+    <section
+      className="searchContainer"
+    >
+      <input
+        className="searchInput"
+        id="songsSearch"
+        name="songs-search"
+        onChange={[Function]}
+        placeholder="Search for songs by artist or title"
+        type="text"
+        value=""
+      />
+      <img
+        alt="search icon"
+        className="searchIcon"
+        src="/icons/search.svg"
+      />
+    </section>
+  </header>
+  <main
+    className="gridContainer"
+  >
+    <section
+      className="filterContainer"
+    >
+      <span
+        className="filterLabel"
+        id="label"
+      >
+        Filter by level
+      </span>
+      <div
+        className="selectedFilters "
+      >
+        
+        <div
+          className="filterButton active"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <svg
+            height={16}
+            viewBox="0 0 16 16"
+            width={16}
+          >
+            <path
+              d="M0 0h16v16H0z"
+              fill="none"
+            />
+            <path
+              d="M12.5 3.104a2.751 2.751 0 010 5.292v6.854a.75.75 0 11-1.5 0V8.396a2.751 2.751 0 010-5.292V.75a.75.75 0 111.5 0v2.354zM5 7.604a2.751 2.751 0 010 5.292v2.354a.75.75 0 11-1.5 0v-2.354a2.751 2.751 0 010-5.292V.75a.75.75 0 011.5 0v6.854zM4.25 11.5a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5zm7.5-4.5a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z"
+              fill="#000"
+            />
+          </svg>
+        </div>
+      </div>
+    </section>
+    <section
+      className="searchResults"
+    >
+      <div
+        className="infinite-scroll-component__outerdiv"
+        style={Object {}}
+      >
+        <div
+          className="infinite-scroll-component "
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "height": "auto",
+              "overflow": "auto",
+            }
+          }
+        >
+          <h4>
+            Loading...
+          </h4>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+`;

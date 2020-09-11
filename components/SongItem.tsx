@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FunctionComponent } from 'react';
 import { Song, Favorite } from '../hooks/useFetch';
 import HeartIcon from './icons/HeartIcon';
 import LevelIcon from '../components/icons/LevelIcon'
@@ -9,11 +9,11 @@ import styles from './SongItem.module.css';
 interface Props extends Song {
     index: number;
     isLiked: boolean;
-    reFetchFavourites: Function;
+    reFetchFavourites: () => void;
     favorite: Favorite
 }
 
-const removeFromFavorites = async (favoriteId: string) => {
+const removeFromFavorites = async (favoriteId: string): Promise<void> => {
     try {
         const response = await fetch(`${API_SONGS_ENDPOINT}/favorites/${favoriteId}`, {
             method: 'DELETE',
@@ -24,7 +24,7 @@ const removeFromFavorites = async (favoriteId: string) => {
     }
 }
 
-const addFavorite = async (body: string) => {
+const addFavorite = async (body: string): Promise<Favorite> => {
     try {
         const response = await fetch(`${API_SONGS_ENDPOINT}/favorites`, {
             method: 'POST',
@@ -39,7 +39,7 @@ const addFavorite = async (body: string) => {
     }
 };
 
-const SongItem = (props: Props) => {
+const SongItem: FunctionComponent<Props> = (props: Props) => {
 
     const {
         images,
@@ -59,6 +59,7 @@ const SongItem = (props: Props) => {
     const stroke = liked ? 'none' : '#fff';
 
     //adds fallback image for those images that return 403
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleFallbackImage = (event: any) => {
         event.target.src = '/missing-cover.png';
     };
